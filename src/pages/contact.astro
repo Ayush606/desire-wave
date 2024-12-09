@@ -1,0 +1,105 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Contact',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="Contact" title="Let's Connect!" />
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="We are here to help!"
+    items={[
+      {
+        title: 'Phone',
+        description: '+91 9399394339',
+        icon: 'tabler:headset',
+        callToAction: {
+          text: 'Call Us',
+          href: 'tel:+919399394339',
+          class: 'w-full rounded-md',
+        },
+      },
+      {
+        title: 'Email',
+        description: 'contact@support.com',
+        icon: 'tabler:mail',
+        callToAction: {
+          text: 'Email Us',
+          href: 'mailto:contact@gg.com',
+          class: 'w-full rounded-md',
+        },
+      },
+      {
+        title: 'Location',
+        description: '1234 Lorem Ipsum St, 244001, Moradabad, UP',
+        icon: 'tabler:map-pin',
+        callToAction: {
+          text: 'Get Directions',
+          href: 'https://goo.gl/maps/1q2w3e4r5t6y7u8i9o',
+          class: 'w-full rounded-md',
+        },
+      },
+    ]}
+  />
+
+  <ContactUs
+    id="contact-form"
+    title="Send us a message today!"
+    subtitle="For quicker answers, Chat with us on WhatsApp."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Name',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+    ]}
+    textarea={{
+      label: 'Message',
+    }}
+    description="We will respond to you within 24 hours."
+    button="Send Message"
+  />
+</Layout>
+
+<script>
+  //getting form data by id
+  document.addEventListener('astro:page-load', () => {
+    const form = document.querySelector('#contact-form form') as HTMLFormElement;
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        fetch('/api/send-mail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            form.reset();
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    }
+  });
+</script>

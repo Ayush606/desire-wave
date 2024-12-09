@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon/components';
+import { footerData } from '~/navigation';
+---
+
+<div
+  class="flex justify-evenly md:justify-between animate-fade border-b dark:text-muted text-sm dark:bg-transparent dark:border-b dark:border-slate-800 dark:text-slate-400 md:flex gap-1 overflow-hidden px-3 relative text-ellipsis whitespace-nowrap"
+>
+  <div class="">
+    <a
+      href="tel:+9133378901"
+      class="dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+    >
+      <Icon name="tabler:phone-call" width="24" height="24" class="mr-1" />
+      +91 333 78 901
+    </a>
+    <a
+      href="mailto:webmaster@example.com"
+      class="dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+    >
+      <Icon name="tabler:mail" width="24" height="24" class="mr-1" />
+      mail@site.com</a
+    >
+  </div>
+  <div class="hidden md:block">
+    {
+      footerData.socialLinks?.length ? (
+        <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
+          {footerData.socialLinks.map(({ ariaLabel, href, text, icon }) => (
+            <li>
+              <a
+                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                aria-label={ariaLabel}
+                href={href}
+              >
+                {icon && <Icon name={icon} class="w-5 h-5" />}
+                <Fragment set:html={text} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        ''
+      )
+    }
+  </div>
+</div>

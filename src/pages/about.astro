@@ -1,0 +1,149 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features from '~/components/widgets/Features.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'About us',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <HeroText tagline="About us">
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white highlight">Crafting Excellence, Delivering Perfection</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      DESIRE WAVE is more than a manufacturer—we are passionate artisans dedicated to preserving and elevating Indian
+      handicraft traditions. Established in 2003, we have been transforming premium materials into extraordinary utility
+      and decorative items that tell a unique story of craftsmanship, innovation, and cultural richness.
+    </Fragment>
+  </HeroText>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'Categories', amount: '15+' },
+      { title: 'Products', amount: '300+' },
+      { title: 'Years Of Experience', amount: '20+' },
+      { title: 'Happy Customers', amount: '1k+' },
+    ]}
+  />
+
+  <!-- About Us ************************ -->
+  <Features
+    id="features"
+    tagline="About Us"
+    title="Why Choose Us?"
+    subtitle="Because We Are The Best At What We Do."
+    items={[
+      {
+        title: 'Artisan Expertise',
+        description:
+          'Our team comprises skilled craftsmen with decades of combined experience, transforming raw materials into extraordinary pieces that blend traditional techniques with modern design.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: 'Premium Materials',
+        description:
+          'We meticulously source the highest quality brass, aluminum, wood, and other materials, ensuring each product meets our rigorous standards of durability and aesthetic appeal.',
+        icon: 'tabler:diamond',
+      },
+      {
+        title: 'Custom Craftsmanship',
+        description:
+          'Every piece is unique, handcrafted with individual attention and care. We offer personalization options to create truly one-of-a-kind items that reflect your personal style.',
+        icon: 'tabler:brush',
+      },
+      {
+        title: 'Sustainable Practices',
+        description:
+          'We are committed to environmental responsibility, using sustainable sourcing methods, minimizing waste, and implementing eco-friendly production techniques in our workshop.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Uncompromising Quality',
+        description:
+          'Our rigorous quality control process ensures that each product undergoes multiple inspections, guaranteeing exceptional craftsmanship and longevity of every item we create.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: 'Customer Satisfaction',
+        description:
+          'We pride ourselves on exceptional customer service, offering personalized consultations, transparent communication, and a satisfaction guarantee on all our handcrafted products.',
+        icon: 'tabler:mood-happy',
+      },
+    ]}
+  />
+
+  <!-- Contact Stuff ********************* -->
+  <HeroText tagline="Have Any Questions? " title="Let's Connect!" />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="You can reach us at here!"
+    items={[
+      {
+        title: 'Phone',
+        description: '+91 9399394339',
+        icon: 'tabler:headset',
+        callToAction: {
+          text: 'Call Us',
+          href: 'tel:+919399394339',
+          class: 'w-full rounded-md',
+        },
+      },
+      {
+        title: 'Email',
+        description: 'contact@support.com',
+        icon: 'tabler:mail',
+        callToAction: {
+          text: 'Email Us',
+          href: 'mailto:contact@gg.com',
+          class: 'w-full rounded-md',
+        },
+      },
+      {
+        title: 'Location',
+        description: '1234 Lorem Ipsum St, 244001, Moradabad, UP',
+        icon: 'tabler:map-pin',
+        callToAction: {
+          text: 'Get Directions',
+          href: 'https://goo.gl/maps/1q2w3e4r5t6y7u8i9o',
+          class: 'w-full rounded-md',
+        },
+      },
+    ]}
+  />
+
+  <ContactUs
+    id="form"
+    title="Send us a message today!"
+    subtitle="For quicker answers, Chat with us on WhatsApp."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Name',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+    ]}
+    textarea={{
+      label: 'Message',
+    }}
+    description="We will respond to you within 24 hours."
+    button="Send Message"
+  />
+</Layout>

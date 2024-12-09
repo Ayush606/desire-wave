@@ -1,0 +1,39 @@
+---
+export const prerender = false;
+import { fetchCategoriesTitleAndImages } from '~/utils/sanity';
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+const metadata = {
+  title: 'product site',
+  ignoreTitleTemplate: true,
+};
+
+const products = await fetchCategoriesTitleAndImages();
+// Get unique categories
+const uniqueCategories = [...new Set(products.map((product) => product.category))];
+---
+
+<Layout metadata={metadata}>
+  <div>
+    <h1 class="text-3xl text-center m-2 p-2 font-bold">Our Products</h1>
+    <div class="flex flex-wrap justify-center">
+      {
+        uniqueCategories.map((category) => {
+          // Get first product image from this category
+          const categoryImage = products.find((product) => product.category === category)?.image;
+          return (
+            <a href={`/${category.toLowerCase()}`} class="w-full sm:w-1/6 m-2 p-2 hover:scale-105 transition-transform">
+              <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="relative h-64">
+                  <img src={categoryImage} alt={`${category} category`} class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-xl font-semibold text-center p-4">{category}</h3>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</Layout>

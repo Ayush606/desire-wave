@@ -1,0 +1,33 @@
+---
+// Props for customization
+import { Icon } from 'astro-icon/components';
+const {
+  whatsappNumber = '917983371461',
+  message = 'Hi there!',
+  position = 'bottom-right', // Options: 'bottom-right', 'bottom-left'
+  iconSize = '48', // Size of the icon in pixels
+} = Astro.props;
+
+// Positioning based on `position` prop
+const positions = {
+  'bottom-right': 'bottom-4 right-4',
+  'bottom-left': 'bottom-4 left-4',
+};
+const positionClass = positions[position] || positions['bottom-right'];
+---
+
+<div
+  class={`fixed ${positionClass} z-40 flex items-center justify-center bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 animate-fade`}
+  style={`width: ${iconSize}px; height: ${iconSize}px;`}
+>
+  <a
+    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp"
+    class="flex items-center justify-center w-full h-full"
+  >
+    <!-- Tabler Icon: Brand WhatsApp -->
+    <Icon name="tabler:brand-whatsapp" width={32} height={32} />
+  </a>
+</div>
