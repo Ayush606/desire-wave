@@ -7,7 +7,12 @@ import ContactUs from '~/components/widgets/Contact.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'About us',
+  title: 'About Us - DESIRE WAVE - Premium Indian Handicrafts | Unique Home Decor & Gifts',
+  description:
+    'Learn more about DESIRE WAVE, a leading manufacturer of premium Indian handicrafts, home decor, and gifts. Discover our artisan expertise, premium materials, custom craftsmanship, sustainable practices, and commitment to quality.',
+  image: '~/assets/images/logo-black.png',
+  url: 'https://desirewave.in/about',
+  ignoreTitleTemplate: true,
 };
 ---
 
@@ -125,7 +130,7 @@ const metadata = {
   />
 
   <ContactUs
-    id="form"
+    id="contact-form"
     title="Send us a message today!"
     subtitle="For quicker answers, Chat with us on WhatsApp."
     inputs={[

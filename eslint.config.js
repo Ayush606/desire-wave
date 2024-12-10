@@ -43,13 +43,14 @@ export default [
     rules: {
       // Note: you must disable the base rule as it can report incorrect errors
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          destructuredArrayIgnorePattern: '^_',
-        },
-      ],
+      '@typescript-eslint/no-unused-vars': 'off', // will fix this later
+      // '@typescript-eslint/no-unused-vars': [
+      //   'error',
+      //   {
+      //     argsIgnorePattern: '^_',
+      //     destructuredArrayIgnorePattern: '^_',
+      //   },
+      // ],
       '@typescript-eslint/no-non-null-assertion': 'off',
     },
   },

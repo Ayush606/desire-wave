@@ -1,9 +1,17 @@
 [build]
   publish = "dist"
   command = "npm run build"
+  functions = "netlify/functions"
 [build.processing.html]
   pretty_urls = false
 [[headers]]
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[functions]
+
+  [functions.node_version]
+  external_node_modules = [
+    "node-mailjet"
+  ]

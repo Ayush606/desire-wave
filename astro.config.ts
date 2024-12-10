@@ -74,7 +74,7 @@ export default defineConfig({
   ],
 
   image: {
-    domains: ['cdn.pixabay.com','globalcrafts.in'],
+    domains: ['cdn.pixabay.com', 'globalcrafts.in'],
   },
 
   // markdown: {

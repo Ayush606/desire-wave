@@ -19,7 +19,7 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
     <h1 class="text-3xl text-center m-2 p-2 font-bold">Our Products</h1>
     <div class="flex flex-wrap justify-center">
       {
-        uniqueCategories.map((category) => {
+        uniqueCategories.map((category: string) => {
           // Get first product image from this category
           const categoryImage = products.find((product) => product.category === category)?.image;
           return (

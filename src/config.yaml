@@ -1,6 +1,6 @@
 site:
   name: Desire Wave
-  site: 'https://ProductSite.com'
+  site: 'https://desirewave.in'
   base: '/'
   trailingSlash: false
 
@@ -9,22 +9,22 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: ProductSite
-    template: '%s — ProductSite'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: DESIRE WAVE - Premium Indian Handicrafts | Unique Home Decor & Gifts
+    template: '%s'
+  description: 'Discover DESIRE WAVE: Exquisite Indian handicrafts featuring premium tableware, furniture, decorative items, and seasonal collections. Quality craftsmanship, innovative designs, and global standards since 2003.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: ProductSite
+    site_name: DESIRE WAVE
     images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
+      - url: '~/assets/images/logo-black.png'
+        width: 921
+        height: 921
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
+    handle: ''
+    site: ''
     cardType: summary_large_image
 
 i18n:

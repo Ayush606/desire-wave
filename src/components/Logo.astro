@@ -1,10 +1,10 @@
 ---
 import { SITE } from 'astrowind:config';
-import { Image } from 'astro:assets';
-import logo from '~/assets/images/logo-black.png';
-import logo2 from '~/assets/images/logo-white.png';
+import logoDark from '~/assets/images/logo-black.png';
+import logoWhite from '~/assets/images/logo-white.png';
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2">
-  <Image src={logo} width={64} height={32} alt="Desire Wave Logo" quality="high" class="" />
+  <img src={logoDark.src} alt={SITE.name} class="block dark:hidden w-16 h-16" />
+  <img src={logoWhite.src} alt={SITE.name} class="hidden dark:block w-16 h-16" />
 </span>
