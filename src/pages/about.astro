@@ -5,6 +5,7 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from 'astrowind:config';
 
 const metadata = {
   title: 'About Us - DESIRE WAVE - Premium Indian Handicrafts | Unique Home Decor & Gifts',
@@ -94,35 +95,35 @@ const metadata = {
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="You can reach us at here!"
+    title="We are here to help!"
     items={[
       {
         title: 'Phone',
-        description: '+91 9399394339',
+        description: SITE.countryCode + ' ' + SITE.phoneNumber,
         icon: 'tabler:headset',
         callToAction: {
           text: 'Call Us',
-          href: 'tel:+919399394339',
+          href: 'tel:' + SITE.countryCode + SITE.phoneNumber,
           class: 'w-full rounded-md',
         },
       },
       {
         title: 'Email',
-        description: 'contact@support.com',
+        description: SITE.email,
         icon: 'tabler:mail',
         callToAction: {
           text: 'Email Us',
-          href: 'mailto:contact@gg.com',
+          href: 'mailto:' + SITE.email,
           class: 'w-full rounded-md',
         },
       },
       {
         title: 'Location',
-        description: '1234 Lorem Ipsum St, 244001, Moradabad, UP',
+        description: SITE.address,
         icon: 'tabler:map-pin',
         callToAction: {
           text: 'Get Directions',
-          href: 'https://goo.gl/maps/1q2w3e4r5t6y7u8i9o',
+          href: SITE.mapLink,
           class: 'w-full rounded-md',
         },
       },
@@ -130,7 +131,7 @@ const metadata = {
   />
 
   <ContactUs
-    id="contact-form"
+    id="contact-form-about"
     title="Send us a message today!"
     subtitle="For quicker answers, Chat with us on WhatsApp."
     inputs={[
@@ -152,3 +153,55 @@ const metadata = {
     button="Send Message"
   />
 </Layout>
+
+<script>
+  //getting form data by id
+  document.addEventListener('astro:page-load', () => {
+    const form = document.querySelector('#contact-form-about form') as HTMLFormElement;
+    const formButton = document.querySelector('#contact-form-about button') as HTMLButtonElement;
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        formButton.disabled = true;
+        formButton.textContent = 'Sending...';
+        formButton.classList.add('cursor-not-allowed', 'opacity-50');
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+        try {
+          const response = await fetch('/.netlify/functions/send-email', {
+            method: 'POST',
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            console.log('Message sent:', result);
+            formButton.textContent = 'Message Sent successfully!';
+            formButton.classList.remove('cursor-not-allowed', 'opacity-50');
+            formButton.disabled = false;
+            setTimeout(() => {
+              formButton.textContent = 'Send Message';
+            }, 3000);
+            form.reset();
+          } else {
+            alert(`Error: ${result.message}`);
+          }
+        } catch (error) {
+          console.error('Submission error:', error);
+          formButton.textContent = 'Failed to send message, try again';
+          formButton.classList.remove('cursor-not-allowed', 'opacity-50');
+          formButton.disabled = false;
+          setTimeout(() => {
+            formButton.textContent = 'Send Message';
+          }, 3000);
+        }
+      });
+    }
+  });
+</script>

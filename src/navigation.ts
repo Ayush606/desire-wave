@@ -71,10 +71,20 @@ export const footerData = {
   //   { text: 'Privacy Policy', href: getPermalink('/privacy') },
   // ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#', text: '(Twitter)' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#', text: 'Instagram' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#', text: 'Facebook' },
-    { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: '#', text: 'Linkedin' },
+    {
+      ariaLabel: 'X',
+      icon: 'tabler:brand-whatsapp',
+      href: 'https://wa.me/919410135939?text=Hi%20there! ',
+      text: 'Whatsapp',
+    },
+    {
+      ariaLabel: 'Instagram',
+      icon: 'tabler:brand-instagram',
+      href: 'https://www.instagram.com/desirewave28',
+      text: 'Instagram',
+    },
+    // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#', text: 'Facebook' },
+    // { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: '#', text: 'Linkedin' },
   ],
   footNote: `
     © 2024 Made by <a class="text-blue-600 underline dark:text-muted" href="https://codexcash.com/"> CodeXCash.com</a> · All rights reserved.

@@ -14,6 +14,7 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 
 // Comment the line below to disable View Transitions
 import { ViewTransitions } from 'astro:transitions';
+import LoadingIndicator from 'astro-loading-indicator/component';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -37,7 +38,9 @@ const { language, textDirection } = I18N;
     <Analytics /> -->
 
     <!-- Comment the line below to disable View Transitions -->
+
     <ViewTransitions fallback="swap" />
+    <LoadingIndicator color="#6d28d9" />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">

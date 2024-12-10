@@ -30,6 +30,7 @@
     "@fontsource/rouge-script": "^5.1.0",
     "astro": "^4.16.2",
     "astro-icon": "^1.1.1",
+    "astro-loading-indicator": "^0.7.0",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "node-mailjet": "^6.0.6",

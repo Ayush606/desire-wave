@@ -42,8 +42,8 @@ export const fetchProductsInCategory = async (category) => {
   const response = await fetch(url);
   const data = await response.json();
   return data.result.map((product) => ({
-    title: product.title,
-    image: product.image.url,
+    title: product?.title,
+    image: product?.image.url,
   }));
 };
 
@@ -53,11 +53,14 @@ export const fetchAllCategoriesAndProducts = async () => {
   const url = `${sanityBaseUrl}${encodeURIComponent(query)}`;
   const response = await fetch(url);
   const data = await response.json();
-  return data.result.flatMap((category) =>
-    category.products.map((product) => ({
-      name: product.title,
-      image: product.image.url,
-      category: category.title,
-    }))
+  return (
+    data?.result?.flatMap(
+      (category) =>
+        category?.products?.map((product) => ({
+          name: product?.title ?? 'Untitled Product',
+          image: product?.image?.url ?? '/placeholder.jpg',
+          category: category?.title ?? 'Uncategorized',
+        })) ?? []
+    ) ?? []
   );
 };

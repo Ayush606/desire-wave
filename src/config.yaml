@@ -3,6 +3,11 @@ site:
   site: 'https://desirewave.in'
   base: '/'
   trailingSlash: false
+  countryCode: '+91'
+  phoneNumber: '9410135939'
+  email: 'info@desirewave.in'
+  address: '1234 Lorem Ipsum St, 244001, Moradabad, UP'
+  mapLink: ''
 
   googleSiteVerificationId: null
 

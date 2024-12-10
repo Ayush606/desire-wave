@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import { SITE } from 'astrowind:config';
 
 const metadata = {
   title: 'Contact Us - DESIRE WAVE - Premium Indian Handicrafts | Unique Home Decor & Gifts',
@@ -25,31 +26,31 @@ const metadata = {
     items={[
       {
         title: 'Phone',
-        description: '+91 9399394339',
+        description: SITE.countryCode + ' ' + SITE.phoneNumber,
         icon: 'tabler:headset',
         callToAction: {
           text: 'Call Us',
-          href: 'tel:+919399394339',
+          href: 'tel:' + SITE.countryCode + SITE.phoneNumber,
           class: 'w-full rounded-md',
         },
       },
       {
         title: 'Email',
-        description: 'contact@support.com',
+        description: SITE.email,
         icon: 'tabler:mail',
         callToAction: {
           text: 'Email Us',
-          href: 'mailto:contact@gg.com',
+          href: 'mailto:' + SITE.email,
           class: 'w-full rounded-md',
         },
       },
       {
         title: 'Location',
-        description: '1234 Lorem Ipsum St, 244001, Moradabad, UP',
+        description: SITE.address,
         icon: 'tabler:map-pin',
         callToAction: {
           text: 'Get Directions',
-          href: 'https://goo.gl/maps/1q2w3e4r5t6y7u8i9o',
+          href: SITE.mapLink,
           class: 'w-full rounded-md',
         },
       },

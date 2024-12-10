@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { footerData } from '~/navigation';
+import { SITE } from 'astrowind:config';
 ---
 
 <div
@@ -8,18 +9,19 @@ import { footerData } from '~/navigation';
 >
   <div class="">
     <a
-      href="tel:+9133378901"
+      href={'tel:' + SITE.countryCode + SITE.phoneNumber}
       class="dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
     >
       <Icon name="tabler:phone-call" width="24" height="24" class="mr-1" />
-      +91 333 78 901
+      {SITE.countryCode}
+      {SITE.phoneNumber}
     </a>
     <a
-      href="mailto:webmaster@example.com"
+      href={'mailto:' + SITE.email}
       class="dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
     >
       <Icon name="tabler:mail" width="24" height="24" class="mr-1" />
-      mail@site.com</a
+      {SITE.email}</a
     >
   </div>
   <div class="hidden md:block">
