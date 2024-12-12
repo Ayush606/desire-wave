@@ -12,7 +12,7 @@ export const titleFormatter = async (title) => {
 
 // fetch all categories title and url
 export const fetchCategoriesTitleAndUrl = async () => {
-  const query = '*[_type == "category"].title';
+  const query = '*[_type == "category" && title != "Featured"].title';
   const url = `${sanityBaseUrl}${encodeURIComponent(query)}`;
   const response = await fetch(url);
   const data = await response.json();
@@ -25,13 +25,13 @@ export const fetchCategoriesTitleAndUrl = async () => {
 // fetch all categories title and images
 
 export const fetchCategoriesTitleAndImages = async () => {
-  const query = '*[_type == "category"]{title, image}';
+  const query = '*[_type == "category" && title != "Featured"]{title, image}';
   const url = `${sanityBaseUrl}${encodeURIComponent(query)}`;
   const response = await fetch(url);
   const data = await response.json();
   return data.result.map((category) => ({
     category: category.title,
-    image: category.image.url,
+    image: category.image?.url,
   }));
 };
 
@@ -49,7 +49,8 @@ export const fetchProductsInCategory = async (category) => {
 
 // fetching all categories and their products with title, image and category
 export const fetchAllCategoriesAndProducts = async () => {
-  const query = '*[_type == "category"]{title, products[]->{title, image}}';
+  // Modified query to limit products to 10 per category using slice operator
+  const query = '*[_type == "category"]{title, products[0...7]->{title, image}}';
   const url = `${sanityBaseUrl}${encodeURIComponent(query)}`;
   const response = await fetch(url);
   const data = await response.json();

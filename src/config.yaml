@@ -6,8 +6,8 @@ site:
   countryCode: '+91'
   phoneNumber: '9410135939'
   email: 'info@desirewave.in'
-  address: '1234 Lorem Ipsum St, 244001, Moradabad, UP'
-  mapLink: ''
+  address: 'Mohammad Ali Rd, Kisrol, Moradabad, Uttar Pradesh, 244001'
+  mapLink: 'https://www.google.com/maps/dir//Desire+Wave,+Mohammad+Ali+Rd,+Kisrol,+Moradabad,+Uttar+Pradesh+244001/@28.839637,78.7788685,17z/'
 
   googleSiteVerificationId: null
 

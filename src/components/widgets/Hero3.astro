@@ -1,25 +1,28 @@
 ---
+import slide1 from '~/assets/images/slide-2.jpg';
+import slide2 from '~/assets/images/slide-1.jpg';
+import slide3 from '~/assets/images/slide-3.jpg';
 import { Icon } from 'astro-icon/components';
 
 const heroSlides = [
   {
     title: 'Explore Our Exquisite Collections',
     description: 'Discover a world of premium Indian handicrafts curated with passion and precision.',
-    backgroundImage: 'https://globalcrafts.in/assets/img/slide/slider5.jpg',
+    backgroundImage: slide1.src,
     buttonText: 'Explore Collections',
     buttonLink: '/products',
   },
   {
     title: 'Our Craftsmanship, Our Story',
     description: 'Two decades of innovation, quality, and dedication to exceptional artisan work.',
-    backgroundImage: 'https://globalcrafts.in/assets/img/slide/slider2.jpg',
+    backgroundImage: slide2.src,
     buttonText: 'Read About Our Journey',
     buttonLink: '/about',
   },
   {
     title: "Let's Connect and Create",
     description: 'Reach out to us if you want to know more.',
-    backgroundImage: 'https://globalcrafts.in/assets/img/slide/slider3.jpg',
+    backgroundImage: slide3.src,
     buttonText: 'Contact Us',
     buttonLink: '/contact',
   },

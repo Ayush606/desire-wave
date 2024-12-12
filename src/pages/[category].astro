@@ -7,14 +7,21 @@ import { Icon } from 'astro-icon/components';
 
 const { category } = Astro.params;
 
+const products = await fetchProductsInCategory(category);
+
 const metadata = {
-  title: 'Checkout Our Premium Indian Handicrafts Collection',
-  description:
-    'Discover DESIRE WAVE: Exquisite Indian handicrafts featuring premium tableware, furniture, decorative items, and seasonal collections. Quality craftsmanship, innovative designs, and global standards since 2003',
+  title:
+    'Checkout More Than ' +
+    products.length +
+    ' Collection Of ' +
+    category
+      ?.split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' '),
+  description: 'Discover The Best Collection of ' + category + ' With Over ' + products.length + ' Items.',
+  image: '~/assets/images/logo-black.png',
   ignoreTitleTemplate: true,
 };
-
-const products = await fetchProductsInCategory(category);
 ---
 
 <Layout metadata={metadata}>
@@ -27,7 +34,7 @@ const products = await fetchProductsInCategory(category);
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ')
         }</span
-      > Products
+      > Collection
     </h1>
     {/* Products Grid */}
     <div class="flex flex-wrap justify-center" id="products-grid">

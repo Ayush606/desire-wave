@@ -6,7 +6,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import { SITE } from 'astrowind:config';
 
 const metadata = {
-  title: 'Contact Us - DESIRE WAVE - Premium Indian Handicrafts | Unique Home Decor & Gifts',
+  title: 'Contact Us Form | DESIRE WAVE',
   description:
     'Contact DESIRE WAVE for premium Indian handicrafts, unique home decor, and gifts. Reach out to us for custom orders, product inquiries, or any other questions you may have.',
   image: '~/assets/images/logo-black.png',
@@ -18,11 +18,10 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText title="Contact Us" />
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
     items={[
       {
         title: 'Phone',

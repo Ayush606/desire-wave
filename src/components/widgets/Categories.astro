@@ -69,15 +69,19 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
 <div class="container mx-auto p-4">
   {/* Category Filter */}
   <div class="flex justify-center gap-4 flex-wrap mb-8">
-    <button class="category-btn active px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category="all">
-      All
+    <button class="category-btn active px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category="Featured">
+      Featured
     </button>
     {
-      uniqueCategories.map((category) => (
-        <button class="category-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category={category}>
-          {category}
-        </button>
-      ))
+      uniqueCategories.map((category) => {
+        return (
+          category !== 'Featured' && (
+            <button class="category-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category={category}>
+              {category}
+            </button>
+          )
+        );
+      })
     }
   </div>
 
@@ -88,6 +92,7 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
         <div
           class="product-card w-full min-w-56 sm:w-1/6 m-2 border-2 p-2 rounded-md cursor-pointer hover:scale-105 transition-transform"
           data-category={product.category}
+          style={product.category !== 'Featured' ? 'display: none;' : ''}
         >
           <div class="relative overflow-hidden rounded-lg animate-fade">
             <img src={product.image} alt={product.name} class="w-full h-64 object-fit " />
@@ -97,136 +102,181 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
       ))
     }
   </div>
-</div>
-
-{/* Fullscreen Modal */}
-<div id="fullscreen-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
-  <img id="fullscreen-img" class="max-h-[90vh] max-w-[90vw] object-contain animate-fade" src="" alt="Fullscreen view" />
-  <button id="next-image-btn" class="absolute top-1/2 right-4 rounded-md bg-white/30 hover:bg-white/50">
-    <Icon name="tabler:chevron-right" class="w-8 h-8 text-white" />
-    <button id="prev-image-btn" class="absolute top-1/2 left-4 rounded-md bg-white/30 hover:bg-white/50">
-      <Icon name="tabler:chevron-left" class="w-8 h-8 text-white" />
-    </button>
-    <button
-      id="close-fullscreen-btn"
-      class="absolute top-4 right-4 text-white text-5xl pb-1 px-2 rounded-md bg-white/30 hover:bg-white/50"
-      >×
-    </button>
-  </button>
-</div>
-
-<style>
-  .category-btn {
-    transition: all 0.3s;
+  {
+    (
+      <div class="flex justify-center">
+        <a
+          href="/products"
+          class="see-all-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb] mt-4"
+          data-category="Featured"
+        >
+          See All Our Categories
+        </a>
+        {uniqueCategories.map((category: string) => {
+          return (
+            category !== 'Featured' && (
+              <a
+                href={`/${category.toLowerCase()}`}
+                data-category={category}
+                class="see-all-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]  mt-4"
+                style="display: none;"
+              >
+                See All Our {category} Collection
+              </a>
+            )
+          );
+        })}
+      </div>
+    )
   }
 
-  .category-btn.active {
-    background-color: #2563eb;
-    color: white;
-  }
-</style>
+  {/* Fullscreen Modal */}
+  <div id="fullscreen-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+    <img
+      id="fullscreen-img"
+      class="max-h-[90vh] max-w-[90vw] object-contain animate-fade"
+      src=""
+      alt="Fullscreen view"
+    />
+    <button id="next-image-btn" class="absolute top-1/2 right-4 rounded-md bg-white/30 hover:bg-white/50">
+      <Icon name="tabler:chevron-right" class="w-8 h-8 text-white" />
+      <button id="prev-image-btn" class="absolute top-1/2 left-4 rounded-md bg-white/30 hover:bg-white/50">
+        <Icon name="tabler:chevron-left" class="w-8 h-8 text-white" />
+      </button>
+      <button
+        id="close-fullscreen-btn"
+        class="absolute top-4 right-4 text-white text-5xl pb-1 px-2 rounded-md bg-white/30 hover:bg-white/50"
+        >×
+      </button>
+    </button>
+  </div>
 
-<script is:inline>
-  //  wait for the DOM to be loaded
-  document.addEventListener('astro:page-load', () => {
-    // Category filtering
-    const categoryBtns = document.querySelectorAll('.category-btn');
-    const productCards = document.querySelectorAll('.product-card');
-    // Global state
-    let currentCategoryProductState = Array.from(productCards);
-    let currentProductIndex = null;
+  <style>
+    .category-btn {
+      transition: all 0.3s;
+    }
 
-    categoryBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const category = btn.dataset.category;
-        currentCategoryProductState = [];
-        currentCategoryProductState = Array.from(productCards).filter((card) => card.dataset.category === category);
-        if (category === 'all') {
-          currentCategoryProductState = Array.from(productCards);
-        }
-        console.log(currentCategoryProductState);
+    .category-btn.active {
+      background-color: #2563eb;
+      color: white;
+    }
+  </style>
 
-        categoryBtns.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
+  <script is:inline>
+    //  wait for the DOM to be loaded
+    document.addEventListener('astro:page-load', () => {
+      // Category filtering
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      const productCards = document.querySelectorAll('.product-card');
+      // See all buttons for each category
+      const seeAllBtns = document.querySelectorAll('.see-all-btn');
+      // Global state
+      let currentCategoryProductState = Array.from(productCards).filter((card) => card.dataset.category === 'Featured');
+      let currentProductIndex = null;
 
-        productCards.forEach((card) => {
-          if (category === 'all' || card.dataset.category === category) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
+      categoryBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const category = btn.dataset.category;
+          currentCategoryProductState = [];
+
+          // Filter products based on category
+          currentCategoryProductState = Array.from(productCards).filter((card) => {
+            return card.dataset.category === category;
+          });
+
+          // Update active button state
+          categoryBtns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // Show/hide products
+          productCards.forEach((card) => {
+            if (card.dataset.category === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Hide see all button and show only for the selected category
+          seeAllBtns.forEach((btn) => {
+            if (btn.dataset.category === category) {
+              btn.style.display = 'block';
+            } else {
+              btn.style.display = 'none';
+            }
+          });
         });
       });
-    });
 
-    // event listeners for the fullscreen modal
-    document.querySelectorAll('.product-card').forEach((product) => {
-      product.addEventListener('click', () => {
-        currentProductIndex = currentCategoryProductState.findIndex((card) => card === product);
-        console.log(currentProductIndex);
-        openFullscreen(product.querySelector('img').src);
+      // event listeners for the fullscreen modal
+      document.querySelectorAll('.product-card').forEach((product) => {
+        product.addEventListener('click', () => {
+          currentProductIndex = currentCategoryProductState.findIndex((card) => card === product);
+          console.log(currentProductIndex);
+          openFullscreen(product.querySelector('img').src);
+        });
       });
-    });
 
-    // event to the close button
-    document.getElementById('close-fullscreen-btn').addEventListener('click', closeFullscreen);
+      // event to the close button
+      document.getElementById('close-fullscreen-btn').addEventListener('click', closeFullscreen);
 
-    // event to the next button
-    document.getElementById('next-image-btn').addEventListener('click', () => nextImage(currentCategoryProductState));
+      // event to the next button
+      document.getElementById('next-image-btn').addEventListener('click', () => nextImage(currentCategoryProductState));
 
-    // event to the prev button
-    document.getElementById('prev-image-btn').addEventListener('click', () => prevImage(currentCategoryProductState));
+      // event to the prev button
+      document.getElementById('prev-image-btn').addEventListener('click', () => prevImage(currentCategoryProductState));
 
-    // event for the arrow keys when the modal is open
-    document.addEventListener('keydown', (e) => {
-      if (document.getElementById('fullscreen-modal').style.display === 'flex') {
-        if (e.key === 'ArrowRight') {
-          nextImage(currentCategoryProductState);
-        } else if (e.key === 'ArrowLeft') {
-          prevImage(currentCategoryProductState);
-        } else if (e.key === 'Escape') {
+      // event for the arrow keys when the modal is open
+      document.addEventListener('keydown', (e) => {
+        if (document.getElementById('fullscreen-modal').style.display === 'flex') {
+          if (e.key === 'ArrowRight') {
+            nextImage(currentCategoryProductState);
+          } else if (e.key === 'ArrowLeft') {
+            prevImage(currentCategoryProductState);
+          } else if (e.key === 'Escape') {
+            closeFullscreen();
+          }
+        }
+      });
+
+      // Fullscreen functions
+      function openFullscreen(imgSrc) {
+        const modal = document.getElementById('fullscreen-modal');
+        const fullscreenImg = document.getElementById('fullscreen-img');
+        fullscreenImg.classList.add('animate-fade');
+        setTimeout(() => {
+          fullscreenImg.classList.remove('animate-fade');
+        }, 1000);
+        fullscreenImg.src = imgSrc;
+        modal.style.display = 'flex';
+      }
+
+      // Next image function
+      function nextImage(currentCategoryProductState) {
+        currentProductIndex = (currentProductIndex + 1) % currentCategoryProductState.length;
+        openFullscreen(currentCategoryProductState[currentProductIndex].querySelector('img').src);
+      }
+
+      //prev image function
+      function prevImage(currentCategoryProductState) {
+        currentProductIndex =
+          currentProductIndex === 0 ? currentCategoryProductState.length - 1 : currentProductIndex - 1;
+        openFullscreen(currentCategoryProductState[currentProductIndex].querySelector('img').src);
+      }
+
+      function closeFullscreen() {
+        const modal = document.getElementById('fullscreen-modal');
+        modal.style.display = 'none';
+      }
+
+      // Close modal when clicking outside the image
+      document.getElementById('fullscreen-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'fullscreen-modal') {
           closeFullscreen();
         }
-      }
+      });
+
+      console.log('loaded');
     });
-
-    // Fullscreen functions
-    function openFullscreen(imgSrc) {
-      const modal = document.getElementById('fullscreen-modal');
-      const fullscreenImg = document.getElementById('fullscreen-img');
-      fullscreenImg.classList.add('animate-fade');
-      setTimeout(() => {
-        fullscreenImg.classList.remove('animate-fade');
-      }, 1000);
-      fullscreenImg.src = imgSrc;
-      modal.style.display = 'flex';
-    }
-
-    // Next image function
-    function nextImage(currentCategoryProductState) {
-      currentProductIndex = (currentProductIndex + 1) % currentCategoryProductState.length;
-      openFullscreen(currentCategoryProductState[currentProductIndex].querySelector('img').src);
-    }
-
-    //prev image function
-    function prevImage(currentCategoryProductState) {
-      currentProductIndex =
-        currentProductIndex === 0 ? currentCategoryProductState.length - 1 : currentProductIndex - 1;
-      openFullscreen(currentCategoryProductState[currentProductIndex].querySelector('img').src);
-    }
-
-    function closeFullscreen() {
-      const modal = document.getElementById('fullscreen-modal');
-      modal.style.display = 'none';
-    }
-
-    // Close modal when clicking outside the image
-    document.getElementById('fullscreen-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'fullscreen-modal') {
-        closeFullscreen();
-      }
-    });
-
-    console.log('loaded');
-  });
-</script>
+  </script>
+</div>

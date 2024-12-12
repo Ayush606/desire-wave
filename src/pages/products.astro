@@ -2,16 +2,17 @@
 export const prerender = false;
 import { fetchCategoriesTitleAndImages } from '~/utils/sanity';
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-
-const metadata = {
-  title: 'product site',
-  ignoreTitleTemplate: true,
-};
 
 const products = await fetchCategoriesTitleAndImages();
 // Get unique categories
 const uniqueCategories = [...new Set(products.map((product) => product.category))];
+const metadata = {
+  title: `Explore More Than ${uniqueCategories.length} Categories Of Handicrafts`,
+  description: `Discover The Best Collection of Indian Handicrafts including ${uniqueCategories.map((category) => ' ' + category)} Only On DesireWave.`,
+  image: '~/assets/images/logo-black.png',
+  url: 'https://desirewave.in/products',
+  ignoreTitleTemplate: true,
+};
 ---
 
 <Layout metadata={metadata}>
@@ -23,7 +24,10 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
           // Get first product image from this category
           const categoryImage = products.find((product) => product.category === category)?.image;
           return (
-            <a href={`/${category.toLowerCase()}`} class="w-full sm:w-1/6 m-2 p-2 hover:scale-105 transition-transform">
+            <a
+              href={`/${category.toLowerCase()}`}
+              class="w-full sm:w-1/3 md:w-1/4 lg:w-1/5 m-2 p-2 hover:scale-105 transition-transform"
+            >
               <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                 <div class="relative h-64">
                   <img src={categoryImage} alt={`${category} category`} class="w-full h-full object-cover" />

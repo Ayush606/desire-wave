@@ -75,16 +75,16 @@ export const footerData = {
       ariaLabel: 'X',
       icon: 'tabler:brand-whatsapp',
       href: 'https://wa.me/919410135939?text=Hi%20there! ',
-      text: 'Whatsapp',
+      text: '',
     },
     {
       ariaLabel: 'Instagram',
       icon: 'tabler:brand-instagram',
       href: 'https://www.instagram.com/desirewave28',
-      text: 'Instagram',
+      text: '',
     },
-    // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#', text: 'Facebook' },
-    // { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: '#', text: 'Linkedin' },
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/profile.php?id=61570488867181', text: '' },
+    { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/desire-wave-76349b341/', text: '' },
   ],
   footNote: `
     © 2024 Made by <a class="text-blue-600 underline dark:text-muted" href="https://codexcash.com/"> CodeXCash.com</a> · All rights reserved.
