@@ -1,10 +1,12 @@
 ---
 import { SITE } from 'astrowind:config';
-import logoDark from '~/assets/images/logo-black.png';
-import logoWhite from '~/assets/images/logo-white.png';
+import logoSVG from '~/assets/favicons/logo.svg';
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2">
-  <img src={logoDark.src} alt={SITE.name} class="block dark:hidden w-16 h-16" />
-  <img src={logoWhite.src} alt={SITE.name} class="hidden dark:block w-16 h-16" />
+  <!-- <img src={logoDark.src} alt={SITE.name} class="block dark:hidden w-16 h-16" />
+  <img src={logoWhite.src} alt={SITE.name} class="hidden dark:block w-16 h-16" /> -->
+  <img src={logoSVG.src} alt={SITE.name} class="logo-svg w-16 h-16 dark:bg-white" />
 </span>
+
+<script></script>

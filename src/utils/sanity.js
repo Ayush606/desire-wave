@@ -18,7 +18,7 @@ export const fetchCategoriesTitleAndUrl = async () => {
   const data = await response.json();
   return data.result.map((title) => ({
     text: title,
-    href: title.toLowerCase(),
+    href: '/products/' + title.toLowerCase(),
   }));
 };
 

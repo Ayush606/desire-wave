@@ -9,6 +9,11 @@ const { category } = Astro.params;
 
 const products = await fetchProductsInCategory(category);
 
+// if not found, redirect to 404
+if (products.length === 0) {
+  return Astro.redirect('/404');
+}
+
 const metadata = {
   title:
     'Checkout More Than ' +

@@ -116,7 +116,7 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
           return (
             category !== 'Featured' && (
               <a
-                href={`/${category.toLowerCase()}`}
+                href={`products/${category.toLowerCase()}`}
                 data-category={category}
                 class="see-all-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]  mt-4"
                 style="display: none;"
