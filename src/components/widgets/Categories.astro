@@ -69,13 +69,13 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
 <div class="container mx-auto p-4">
   {/* Category Filter */}
   <div class="flex justify-center gap-4 flex-wrap mb-8">
-    <button class="category-btn active px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category="Featured">
-      Featured
+    <button class="category-btn active px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category="Best Seller">
+      Best Seller
     </button>
     {
       uniqueCategories.map((category) => {
         return (
-          category !== 'Featured' && (
+          category !== 'Best Seller' && (
             <button class="category-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb]" data-category={category}>
               {category}
             </button>
@@ -92,10 +92,10 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
         <div
           class="product-card w-full min-w-56 sm:w-1/6 m-2 border-2 p-2 rounded-md cursor-pointer hover:scale-105 transition-transform"
           data-category={product.category}
-          style={product.category !== 'Featured' ? 'display: none;' : ''}
+          style={product.category !== 'Best Seller' ? 'display: none;' : ''}
         >
           <div class="relative overflow-hidden rounded-lg animate-fade">
-            <img src={product.image} alt={product.name} class="w-full h-64 object-fit " />
+            <img src={product.image} alt={product.name} class="w-full h-64 object-contain " />
           </div>
           <h3 class="text-lg text-center font-semibold mt-2">{product.name}</h3>
         </div>
@@ -108,13 +108,13 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
         <a
           href="/products"
           class="see-all-btn px-3 py-2 rounded-md border-2 hover:bg-[#2563eb] mt-4"
-          data-category="Featured"
+          data-category="Best Seller"
         >
           See All Our Categories
         </a>
         {uniqueCategories.map((category: string) => {
           return (
-            category !== 'Featured' && (
+            category !== 'Best Seller' && (
               <a
                 href={`products/${category.toLowerCase()}`}
                 data-category={category}
@@ -171,7 +171,9 @@ const uniqueCategories = [...new Set(products.map((product) => product.category)
       // See all buttons for each category
       const seeAllBtns = document.querySelectorAll('.see-all-btn');
       // Global state
-      let currentCategoryProductState = Array.from(productCards).filter((card) => card.dataset.category === 'Featured');
+      let currentCategoryProductState = Array.from(productCards).filter(
+        (card) => card.dataset.category === 'Best Seller'
+      );
       let currentProductIndex = null;
 
       categoryBtns.forEach((btn) => {

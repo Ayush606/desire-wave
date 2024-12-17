@@ -12,7 +12,7 @@ export const titleFormatter = async (title) => {
 
 // fetch all categories title and url
 export const fetchCategoriesTitleAndUrl = async () => {
-  const query = '*[_type == "category" && title != "Featured"].title';
+  const query = '*[_type == "category" && title != "Best Seller"].title';
   const url = `${sanityBaseUrl}${encodeURIComponent(query)}`;
   const response = await fetch(url);
   const data = await response.json();
@@ -25,7 +25,7 @@ export const fetchCategoriesTitleAndUrl = async () => {
 // fetch all categories title and images
 
 export const fetchCategoriesTitleAndImages = async () => {
-  const query = '*[_type == "category" && title != "Featured"]{title, image}';
+  const query = '*[_type == "category" && title != "Best Seller"]{title, image}';
   const url = `${sanityBaseUrl}${encodeURIComponent(query)}`;
   const response = await fetch(url);
   const data = await response.json();
