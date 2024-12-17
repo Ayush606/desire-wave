@@ -1,6 +1,6 @@
 // netlify/edge-functions/sitemap.ts
 const sanityBaseUrl = 'https://1qnc73ya.api.sanity.io/v2022-03-07/data/query/production?query=';
-const query = '*[_type == "category" && title != "Featured"].title';
+const query = '*[_type == "category" && title != "Best Seller"].title';
 const BASE_URL = 'https://desirewave.in';
 
 export default async () => {
@@ -18,14 +18,14 @@ export default async () => {
     <url>
       <loc>${BASE_URL}/${page}</loc>
       <changefreq>weekly</changefreq>
-      <priority>0.3</priority>
+      <priority>0.8</priority>
     </url>
   `.trim());
 
 
   const categoriesEntries = categories.result.map(category => `
     <url>
-      <loc>${BASE_URL}/products/${category.toLowerCase()}</loc>
+      <loc>${BASE_URL}/products/${category.toLowerCase().replaceAll(' ', '-')}</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
