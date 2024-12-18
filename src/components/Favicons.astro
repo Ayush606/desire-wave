@@ -1,8 +1,14 @@
 ---
-import favIconSvg from '~/assets/favicons/logo.svg';
+import favIconSvg from '~/assets/favicons/logo-bg.svg';
+import favIconPng from '~/assets/favicons/favicon-32x32.png';
+import favicon16x16 from '~/assets/favicons/favicon-16x16.png';
+import favIconIco from '~/assets/favicons/favicon.ico';
+import favIconAppleTouch from '~/assets/favicons/apple-touch-icon.png';
 ---
 
-<link rel="shortcut icon" href={favIconSvg.src} />
+<link rel="shortcut icon" href={favIconIco} />
 <link rel="icon" type="image/svg+xml" href={favIconSvg.src} />
+<link rel="icon" type="image/png" sizes="32x32" href={favIconPng.src} />
+<link rel="icon" type="image/png" sizes="16x16" href={favicon16x16.src} />
 <link rel="mask-icon" href={favIconSvg.src} />
-<link rel="apple-touch-icon" sizes="180x180" href={favIconSvg.src} />
+<link rel="apple-touch-icon" sizes="180x180" href={favIconAppleTouch.src} />

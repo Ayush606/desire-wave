@@ -23,7 +23,7 @@ metadata:
   openGraph:
     site_name: DESIRE WAVE
     images:
-      - url: '~/assets/images/logo-black.png'
+      - url: '~/assets/images/logo-bg.png'
         width: 921
         height: 921
     type: website
