@@ -87,6 +87,6 @@ export const footerData = {
     { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/desire-wave-76349b341/', text: '' },
   ],
   footNote: `
-    © 2024 Made by <a class="text-blue-600 underline dark:text-muted" href="https://codexcash.com/"> CodeXCash.com</a> · All rights reserved.
+    © 2024 Made by <a class="text-blue-600 underline dark:text-muted" href="tel:+917983371461">Ayush Kashyap</a> · All rights reserved.
   `,
 };
