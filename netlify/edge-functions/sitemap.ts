@@ -1,7 +1,7 @@
 // netlify/edge-functions/sitemap.ts
 const sanityBaseUrl = 'https://1qnc73ya.api.sanity.io/v2022-03-07/data/query/production?query=';
 const query = '*[_type == "category" && title != "Best Seller"].title';
-const BASE_URL = 'https://desirewave.in';
+const BASE_URL = 'https://www.desirewave.in';
 
 export default async () => {
     const pages = [ 'about', 'contact', 'products'];

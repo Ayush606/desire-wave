@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 // import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
-import logoSVG from '~/assets/favicons/logo-name.svg';
+import logoSVG from '~/assets/favicons/logo-bg.svg';
 
 interface Link {
   text?: string;
@@ -36,7 +36,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
       <div class="col-span-12 lg:col-span-4">
         <div class="mb-2">
           <a class="inline-block" href={getHomePermalink()}>
-            <img src={logoSVG.src} alt="DesireWave Logo" class="w-32 h-8 dark:bg-white pr-1" />
+            <img src={logoSVG.src} alt="DesireWave Logo" class="w-24 h-24 dark:bg-white pr-1" />
           </a>
         </div>
         <div class="text-sm text-muted flex gap-1">
