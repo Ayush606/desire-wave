@@ -84,7 +84,7 @@ export const footerData = {
       text: '',
     },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/profile.php?id=61570488867181', text: '' },
-    { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/desire-wave-76349b341/', text: '' },
+    { ariaLabel: 'Linkedin', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/desire-wave', text: '' },
   ],
   footNote: `
     © 2024 Made by <a class="text-blue-600 underline dark:text-muted" href="tel:+917983371461">Ayush Kashyap</a> · All rights reserved.

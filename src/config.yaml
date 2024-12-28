@@ -1,6 +1,6 @@
 site:
   name: Desire Wave
-  site: 'https://desirewave.in'
+  site: 'https://www.desirewave.in'
   base: '/'
   trailingSlash: false
   countryCode: '+91'
