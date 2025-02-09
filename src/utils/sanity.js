@@ -43,7 +43,7 @@ export const fetchProductsInCategory = async (category) => {
   const data = await response.json();
   return data.result.map((product) => ({
     title: product?.title,
-    image: product?.image.url,
+    image: product?.image?.url,
   }));
 };
 
